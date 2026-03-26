@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<!-- saved from url=(0043)https://www.lncc.br/~borges/php/testar.html -->
+<html lang="pt-BR"><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lendário Launcher - Suas Imagens</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    /* &#127912; SCROLLBAR NEON DA LOGO */
+    ::-webkit-scrollbar {
+      width: 10px;
+      height: 10px;
+      background-color: #000;
+    }
+
+    ::-webkit-scrollbar-track {
+      background-color: #0d0118;
+      border-left: 1px solid #2d114d;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: linear-gradient(to bottom, #ff2a85, #00f0ff);
+      border-radius: 5px;
+      border: 2px solid #0d0118;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: #00f0ff;
+      box-shadow: 0 0 10px #00f0ff;
+    }
+
+    * {
+      scrollbar-width: thin;
+      scrollbar-color: #00f0ff #0d0118;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #000; 
+      color: #fff;
+      height: 100vh;
+      display: flex;
+      overflow: hidden;
+    }
+
+    /* --- BARRA LATERAL --- */
+    .sidebar {
+      width: 280px; 
+      background-color: #0d0118; 
+      border-right: 1px solid #2d114d; 
+      display: flex;
+      flex-direction: column;
+      padding: 20px 0;
+      overflow-y: auto;
+    }
+
+    .sidebar-logo {
+      padding: 0 20px 20px 20px;
+      font-size: 1.3em;
+      font-weight: 900;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      background: linear-gradient(to right, #ffea75 0%, #ffc600 45%, #00f0ff 55%, #00a8ff 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      border-bottom: 1px solid #2d114d;
+      margin-bottom: 20px;
+      text-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
+      flex-shrink: 0;
+    }
+
+    .nav-item {
+      padding: 12px 20px;
+      color: #cdcdcd; 
+      text-decoration: none;
+      font-size: 0.9em;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      cursor: pointer;
+      transition: 0.2s;
+      flex-shrink: 0;
+    }
+
+    .nav-item:hover {
+      background-color: #240b36; 
+      color: #fff;
+    }
+
+    .nav-item.active {
+      background-color: #3b1354;
+      color: #fff;
+      border-left: 4px solid #ff2a85; 
+      text-shadow: 0 0 5px #ff2a85;
+    }
+
+    /* --- ÁREA PRINCIPAL --- */
+    .main-content {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      background-color: #000;
+      position: relative;
+      overflow-y: auto;
+    }
+
+    /* --- BANNER DE DESTAQUE --- */
+    .hero-banner {
+      width: 100%;
+      height: 450px;
+      /* Começa com a sua foto do avião simulador! */
+      background: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,1)), url('https://files.catbox.moe/bbb1ke.png') center/cover;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 40px;
+      transition: background-image 0.5s ease;
+      z-index: 2;
+      flex-shrink: 0;
+    }
+
+    .hero-title {
+      font-size: 2.8em;
+      font-weight: 900;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+      color: #ffdb58; 
+      text-shadow: 2px 2px 8px rgba(0,0,0,0.8), 0 0 10px rgba(255, 219, 88, 0.3);
+    }
+
+    .hero-desc {
+      font-size: 1.1em;
+      color: #cccccc;
+      max-width: 600px;
+      margin-bottom: 30px;
+      text-shadow: 1px 1px 4px rgba(0,0,0,0.8);
+    }
+
+    .btn-play {
+      background: linear-gradient(135deg, #00f0ff 0%, #00a8ff 100%); 
+      color: black;
+      text-decoration: none;
+      font-size: 1.5em;
+      font-weight: 900;
+      padding: 15px 60px;
+      border-radius: 4px;
+      display: inline-block;
+      width: fit-content;
+      box-shadow: 0 4px 15px rgba(0, 240, 255, 0.4), 0 0 10px rgba(0, 240, 255, 0.3);
+      transition: all 0.2s, transform 0.1s;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .btn-play:hover {
+      background: linear-gradient(135deg, #70f7ff 0%, #00f0ff 100%);
+      box-shadow: 0 4px 25px rgba(0, 240, 255, 0.6), 0 0 15px rgba(0, 240, 255, 0.5);
+    }
+
+    .btn-play:active {
+      transform: scale(0.98);
+    }
+
+    /* --- SEÇÃO DE INSTALAÇÕES --- */
+    .sub-section {
+      padding: 40px;
+      z-index: 2; 
+      flex: 1;
+    }
+
+    .section-title {
+      font-size: 1.5em;
+      margin-bottom: 20px;
+      color: #ff2a85; 
+      text-shadow: 0 0 5px rgba(255, 42, 133, 0.3);
+    }
+
+    .versions-list {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      max-width: 600px;
+      margin-bottom: 50px;
+    }
+
+    .version-item {
+      background-color: #0d0118; 
+      border: 1px solid #2d114d; 
+      padding: 15px;
+      border-radius: 8px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: 0.2s;
+    }
+
+    .version-item:hover {
+        background-color: #240b36;
+        border-color: #a83279;
+    }
+
+    .version-info {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .version-img {
+      width: 80px;
+      height: 50px;
+      border-radius: 4px;
+      object-fit: cover;
+      border: 1px solid #444;
+    }
+
+    .version-name {
+      font-weight: bold;
+      color: #ffdb58; 
+    }
+
+    .btn-small {
+      background-color: transparent;
+      color: #ff2a85;
+      border: 1px solid #ff2a85;
+      text-decoration: none;
+      font-size: 0.85em;
+      font-weight: bold;
+      padding: 8px 15px;
+      border-radius: 4px;
+      transition: 0.2s;
+    }
+
+    .btn-small:hover {
+      background-color: #ff2a85;
+      color: #000;
+      box-shadow: 0 0 10px rgba(255, 42, 133, 0.3);
+    }
+
+    .footer-grid {
+      height: 150px;
+      background-image: 
+        linear-gradient(rgba(0, 240, 255, 0.3) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 240, 255, 0.3) 1px, transparent 1px);
+      background-size: 40px 40px;
+      background-position: center bottom;
+      transform: perspective(100px) rotateX(60deg);
+      transform-origin: center bottom;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: 1; 
+    }
+
+    footer {
+      background-color: #0d0118;
+      padding: 20px 40px;
+      color: #666;
+      font-size: 0.85em;
+      border-top: 1px solid #2d114d;
+      text-align: center;
+      z-index: 2; 
+      flex-shrink: 0;
+    }
+  </style>
+</head>
+<body>
+
+  <aside class="sidebar">
+    <div class="sidebar-logo">
+      &#127918; Lendário Launcher
+    </div>
+    
+    <div class="nav-item active" onclick="selecionarJogo(&#39;voo&#39;)">Lendário Voo Simulador</div>
+    <div class="nav-item" onclick="selecionarJogo(&#39;parkour&#39;)">Lendário Parkour Adventure</div>
+    <div class="nav-item" onclick="selecionarJogo(&#39;click&#39;)">Lendário Click Simulador</div>
+    <div class="nav-item" onclick="selecionarJogo(&#39;beat&#39;)">Lendário Beat Clash</div>
+    <div class="nav-item" onclick="selecionarJogo(&#39;dash&#39;)">Lendário Dash</div>
+    <div class="nav-item" onclick="selecionarJogo(&#39;tetris&#39;)">Lendário Tetris Edition</div>
+    <div class="nav-item" onclick="selecionarJogo(&#39;flappy&#39;)">Lendário Flappy Edition</div>
+  </aside>
+
+  <div class="main-content">
+    
+    <div class="hero-banner" id="bannerPrincipal" style="background-image: linear-gradient(rgba(0, 0, 0, 0.1), rgb(0, 0, 0)), url(&quot;https://files.catbox.moe/bbb1ke.png&quot;);">
+      <h2 class="hero-title" id="tituloPrincipal">Lendário Voo Simulador</h2>
+      <p class="hero-desc" id="descricaoPrincipal">Teste suas habilidades no ar! O simulador definitivo do Lendário Launcher.</p>
+      <a href="https://luancraft39.github.io/Lend-rio-Voo-Simulador/" class="btn-play" id="linkJogar" target="_blank">JOGAR</a>
+    </div>
+
+    <div class="sub-section">
+      <h3 class="section-title">Instalações Instaladas</h3>
+      
+      <div class="versions-list" id="listaVersoes">
+          <div class="version-item">
+            <div class="version-info">
+              <img src="./Lendário Launcher_files/bbb1ke.png" class="version-img" alt="Lendário Voo Simulador">
+              <div>
+                <span class="version-name">Versão Principal</span>
+                <div style="font-size: 0.8em; color: #888;">Lançamento Instalado</div>
+              </div>
+            </div>
+            <a href="https://luancraft39.github.io/Lend-rio-Voo-Simulador/" class="btn-small" target="_blank">Jogar</a>
+          </div>
+        </div>
+    </div>
+
+    <div class="footer-grid"></div>
+
+    <footer>
+      © 2025 - 2026 Lendário Studio Community • Todos os direitos reservados.
+    </footer>
+  </div>
+
+  <script>
+    // &#128221; DICIONÁRIO COMPLETO COM SUAS IMAGENS DO CATBOX!
+    const dadosJogos = {
+      voo: {
+        titulo: "Lendário Voo Simulador",
+        descricao: "Teste suas habilidades no ar! O simulador definitivo do Lendário Launcher.",
+        link: "https://luancraft39.github.io/Lend-rio-Voo-Simulador/",
+        imagem: "https://files.catbox.moe/bbb1ke.png", // Sua Foto!
+        versoes: [
+          { nome: "Versão Principal", link: "https://luancraft39.github.io/Lend-rio-Voo-Simulador/", img: "https://files.catbox.moe/bbb1ke.png" }
+        ]
+      },
+      parkour: {
+        titulo: "Lendário Parkour Adventure",
+        descricao: "Supere obstáculos e mostre sua agilidade saltando entre blocos e plataformas em 3D!",
+        link: "https://luancraft39.github.io/Lend-rio-Parkour-Adventure/",
+        imagem: "https://files.catbox.moe/vhtzp8.png", // Sua Foto!
+        versoes: [
+          { nome: "Versão Principal (Estável)", link: "https://luancraft39.github.io/Lend-rio-Parkour-Adventure/", img: "https://files.catbox.moe/vhtzp8.png" },
+          { nome: "Alpha Versão 2.0.1", link: "https://luancraft39.github.io/Lend-rio-Parkour-Adventure-Vers-o-2.0.1/", img: "https://files.catbox.moe/vhtzp8.png" }
+        ]
+      },
+      click: {
+        titulo: "Lendário Click Simulador",
+        descricao: "Seja o clique mais rápido do servidor! Um simulador desafiador de CPS (Cliques por segundo).",
+        link: "https://luancraft39.github.io/Lend-rio-Click-Simulador/",
+        imagem: "https://files.catbox.moe/wdca9l.png", // Sua Foto!
+        versoes: [
+          { nome: "Versão Principal", link: "https://luancraft39.github.io/Lend-rio-Click-Simulador/", img: "https://files.catbox.moe/wdca9l.png" }
+        ]
+      },
+      beat: {
+        titulo: "Lendário Beat Clash",
+        descricao: "Siga as notas e aperte os botões no momento exato! Um jogo de ritmo arcade eufórico.",
+        link: "https://luancraft39.github.io/LEND-RIO-BEAT-CLASH-X/",
+        imagem: "https://images.unsplash.com/photo-1516873240891-4bf0145aca3d?q=80&w=1932&auto=format&fit=crop",
+        versoes: [
+          { nome: "Lendário Beat Clash X", link: "https://luancraft39.github.io/LEND-RIO-BEAT-CLASH-X/", img: "https://images.unsplash.com/photo-1511379938547-c1f69419868d?q=80&w=200&auto=format&fit=crop" }
+        ]
+      },
+      dash: {
+        titulo: "Lendário Dash",
+        descricao: "Desvios em alta velocidade. Use seus reflexos rápidos para não colidir com os obstáculos no caminho.",
+        link: "https://luancraft39.github.io/Lend-rio-Dash/",
+        imagem: "https://images.unsplash.com/photo-1511919884226-fd3cad34687c?q=80&w=1932&auto=format&fit=crop",
+        versoes: [
+          { nome: "Versão Principal", link: "https://luancraft39.github.io/Lend-rio-Dash/", img: "https://images.unsplash.com/photo-1531685375529-658b148c356e?q=80&w=200&auto=format&fit=crop" }
+        ]
+      },
+      tetris: {
+        titulo: "Lendário Tetris Edition",
+        descricao: "Organize as peças clássicas que caem do céu e quebre as linhas antes que a tela se encha!",
+        link: "https://luancraft39.github.io/Lend-rio-tetris-edition/",
+        imagem: "https://images.unsplash.com/photo-1614026480209-cd9ec3411267?q=80&w=1932&auto=format&fit=crop",
+        versoes: [
+          { nome: "Versão Principal", link: "https://luancraft39.github.io/Lend-rio-tetris-edition/", img: "https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&w=200&auto=format&fit=crop" }
+        ]
+      },
+      flappy: {
+        titulo: "Lendário Flappy Edition",
+        descricao: "Equilibre seu personagem pelas passagens estreitas de canos. Quantos pontos você consegue?",
+        link: "https://luancraft39.github.io/Lend-rio-Flappy-Edition/",
+        imagem: "https://images.unsplash.com/photo-1551103782-8ab07afd45c1?q=80&w=1932&auto=format&fit=crop",
+        versoes: [
+          { nome: "Versão Principal", link: "https://luancraft39.github.io/Lend-rio-Flappy-Edition/", img: "https://images.unsplash.com/photo-1603356033288-acfcb54801e6?q=80&w=200&auto=format&fit=crop" }
+        ]
+      }
+    };
+
+    function selecionarJogo(chaveJogo) {
+      const jogo = dadosJogos[chaveJogo];
+      const itensMenu = document.querySelectorAll('.nav-item');
+      itensMenu.forEach(item => item.classList.remove('active'));
+      event.currentTarget.classList.add('active');
+      
+      document.getElementById('tituloPrincipal').innerText = jogo.titulo;
+      document.getElementById('descricaoPrincipal').innerText = jogo.descricao;
+      document.getElementById('linkJogar').href = jogo.link;
+      
+      document.getElementById('bannerPrincipal').style.backgroundImage = `linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,1)), url('${jogo.imagem}')`;
+      
+      const areaVersoes = document.getElementById('listaVersoes');
+      areaVersoes.innerHTML = "";
+      
+      jogo.versoes.forEach(v => {
+        areaVersoes.innerHTML += `
+          <div class="version-item">
+            <div class="version-info">
+              <img src="${v.img}" class="version-img" alt="${jogo.titulo}">
+              <div>
+                <span class="version-name">${v.nome}</span>
+                <div style="font-size: 0.8em; color: #888;">Lançamento Instalado</div>
+              </div>
+            </div>
+            <a href="${v.link}" class="btn-small" target="_blank">Jogar</a>
+          </div>
+        `;
+      });
+
+      document.querySelector('.main-content').scrollTop = 0;
+    }
+  </script>
+
+
+
+
+		</body></html>
