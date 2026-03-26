@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lendário Launcher</title>
+  <style>
+    body {
+      margin: 0;
+      /* Fonte mais moderna para combinar com a logo */
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+      /* Preto/Roxo bem escuro do fundo da logo */
+      background-color: #0d0118; 
+      color: #fff;
+    }
+
+    header {
+      /* Roxo escuro da base da montanha */
+      background-color: #1a0826; 
+      padding: 20px;
+      text-align: center;
+      font-size: 2em;
+      font-weight: bold;
+      /* Amarelo da estrela da logo */
+      color: #ffdb58; 
+      /* Rosa neon do brilho */
+      border-bottom: 4px solid #ff2a85; 
+      box-shadow: 0 4px 15px rgba(255, 42, 133, 0.4);
+      text-shadow: 0 0 10px #ff2a85;
+    }
+
+    .container {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 20px;
+      padding: 30px;
+    }
+
+    .card {
+      background-color: #240b36; /* Roxo médio */
+      border: 2px solid #a83279; /* Borda rosa/roxa */
+      border-radius: 15px;
+      padding: 15px;
+      text-align: center;
+      transition: transform 0.3s, background-color 0.3s, box-shadow 0.3s;
+      cursor: pointer;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.6);
+    }
+
+    .card:hover {
+      transform: scale(1.05);
+      background-color: #3b1354; /* Roxo mais claro no hover */
+      box-shadow: 0 0 15px #00f0ff; /* Brilho neon azul ao passar o mouse */
+      border-color: #00f0ff;
+    }
+
+    .card img {
+      width: 100%;
+      border-radius: 10px;
+    }
+
+    /* --- ESTILO DOS TÍTULOS DOS JOGOS (Gradiente da Logo) --- */
+    .card h3 {
+      margin-top: 15px;
+      font-size: 1.3em; /* Levemente maior para o efeito aparecer melhor */
+      font-weight: 900; /* Super negrito */
+      text-transform: uppercase; /* Tudo maiúsculo como na logo */
+      
+      /* O Segredo do Efeito */
+      background: linear-gradient(to bottom, 
+        #ffea75 0%, /* Amarelo clarinho no topo */
+        #ffc600 45%, /* Dourado no meio */
+        #ffc600 50%, /* Linha de divisão */
+        #00f0ff 55%, /* Começa o azul Ciano */
+        #00a8ff 100% /* Azul mais escuro no fundo */
+      );
+      
+      /* Aplica o fundo ao texto */
+      -webkit-background-clip: text;
+      background-clip: text;
+      
+      /* Faz o texto original ficar transparente */
+      color: transparent; 
+      
+      /* Sombra leve para destacar no fundo escuro */
+      filter: drop-shadow(0 0 2px rgba(255, 255, 255, 0.2));
+    }
+
+    .card p {
+      font-size: 0.9em;
+      margin: 10px 0;
+      color: #e0e0e0;
+    }
+
+    .btn {
+      background-color: #00f0ff; /* Azul Ciano */
+      color: #0d0118;
+      padding: 10px 15px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: bold;
+      display: inline-block;
+      margin-top: 10px;
+      box-shadow: 0 3px 10px rgba(0, 240, 255, 0.3);
+      transition: 0.2s;
+    }
+
+    .btn:hover {
+      background-color: #ffdb58; /* Vira amarelo no hover */
+      box-shadow: 0 0 15px #ffdb58;
+    }
+
+    .toggle {
+      cursor: pointer;
+      color: #ff2a85; /* Rosa Neon */
+      font-weight: bold;
+      margin-top: 12px;
+      display: inline-block;
+      font-size: 0.9em;
+    }
+
+    .versions {
+      display: none;
+      margin-top: 10px;
+      background: rgba(0, 0, 0, 0.5);
+      padding: 10px;
+      border-radius: 8px;
+      text-align: left;
+      font-size: 0.9em;
+      border: 1px solid #444;
+    }
+
+    .versions a {
+      display: block;
+      margin: 5px 0;
+      color: #ffdb58;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .versions a:hover {
+      color: #00f0ff;
+      text-decoration: underline;
+    }
+
+    footer {
+      background-color: #1a0826;
+      text-align: center;
+      padding: 20px;
+      font-size: 0.9em;
+      color: #888;
+      border-top: 4px solid #ff2a85;
+      box-shadow: 0 -4px 15px rgba(255, 42, 133, 0.3);
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    🕹️ Lendário Launcher
+  </header>
+
+  <audio autoplay="" loop="">
+    <source src="https://files.catbox.moe/xtkmrv.m4a" type="audio/mpeg">
+    Seu navegador não suporta áudio.
+  </audio>
+
+  <div class="container">
+    <div class="card">
+      <img src="https://via.placeholder.com/250x150.png?text=Lendario+Voo+Simulador" alt="Lendário Voo Simulador">
+      <h3>Voo Simulador</h3>
+      <p>Teste suas habilidades de voo nesse simulador incrível!</p>
+      <a href="https://luancraft39.github.io/Lend-rio-Voo-Simulador/" class="btn" target="_blank">Jogar</a>
+    </div>
+
+    <div class="card">
+      <img src="https://via.placeholder.com/250x150.png?text=Lendario+Parkour+Adventure" alt="Lendário Parkour Adventure">
+      <h3>Parkour Adventure</h3>
+      <p>Supere obstáculos e viva uma aventura radical de parkour!</p>
+      <a href="https://luancraft39.github.io/Lend-rio-Parkour-Adventure/" class="btn" target="_blank">Jogar Versão Principal</a>
+      <span class="toggle" onclick="toggleVersions('parkourVersions')">⬇ Mostrar Versões</span>
+      <div class="versions" id="parkourVersions">
+        <a href="https://luancraft39.github.io/Lend-rio-Parkour-Adventure-Vers-o-2.0.1" target="_blank">Versão 2.0.1</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="https://via.placeholder.com/250x150.png?text=Lendario+Click+Simulador" alt="Lendário Click Simulador">
+      <h3>Click Simulador</h3>
+      <p>Mostre sua velocidade de cliques e alcance recordes!</p>
+      <a href="https://luancraft39.github.io/Lend-rio-Click-Simulador/" class="btn" target="_blank">Jogar</a>
+    </div>
+
+    <div class="card">
+      <img src="https://via.placeholder.com/250x150.png?text=Lendario+Beat+Clash" alt="Lendário Beat Clash">
+      <h3>Beat Clash X</h3>
+      <p>Entre no ritmo e enfrente batalhas musicais épicas!</p>
+      <a href="https://luancraft39.github.io/LEND-RIO-BEAT-CLASH-X/" class="btn" target="_blank">Jogar</a>
+    </div>
+
+    <div class="card">
+      <img src="https://via.placeholder.com/250x150.png?text=Lendario+Dash" alt="Lendário Dash">
+      <h3>Dash</h3>
+      <p>Corra, desvie e desafie seus reflexos nesse jogo eletrizante!</p>
+      <a href="https://luancraft39.github.io/Lend-rio-Dash/" class="btn" target="_blank">Jogar</a>
+    </div>
+
+    <div class="card">
+      <img src="https://via.placeholder.com/250x150.png?text=Lendario+Tetris+Edition" alt="Lendário Tetris Edition">
+      <h3>Tetris Edition</h3>
+      <p>Clássico Tetris em uma versão lendária para você se divertir!</p>
+      <a href="https://luancraft39.github.io/Lend-rio-tetris-edition/" class="btn" target="_blank">Jogar Versão Principal</a>
+      <span class="toggle" onclick="toggleVersions('tetrisVersions')">⬇ Mostrar Versões</span>
+      <div class="versions" id="tetrisVersions">
+        <a href="https://luancraft39.github.io/Lend-rio-Cl-ssico-Edition/" target="_blank">Versão 1.0 (Clássico Edition)</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="https://via.placeholder.com/250x150.png?text=Lendario+Flappy+Edition" alt="Lendário Flappy Edition">
+      <h3>Flappy Edition</h3>
+      <p>Teste seus reflexos no estilo Flappy Bird lendário!</p>
+      <a href="https://luancraft39.github.io/Lend-rio-Flappy-Edition/" class="btn" target="_blank">Jogar</a>
+    </div>
+  </div>
+
+  <footer>© 2025 - 2026 Lendário Studio Community • Todos os direitos reservados.</footer>
+
+  <script>
+    function toggleVersions(id) {
+      const versions = document.getElementById(id);
+      if (versions.style.display === "block") {
+        versions.style.display = "none";
+      } else {
+        versions.style.display = "block";
+      }
+    }
+  </script>
+
+</body>
+</html>
